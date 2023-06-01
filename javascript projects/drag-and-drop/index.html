@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<link rel="stylesheet" href="./style.css" />
+	</head>
+	<body>
+		<div class="container">
+			<div id="drag-over-item" class="item">
+				<img
+					width="200px"
+					id="draggble-item"
+					draggable="true"
+					src="https://fsa.zobj.net/crop.php?r=OSUAgkqXRdpQ47jtVvgvGRiocJF1mo6skWqyn4eYqLCTK-7sWnSOylukxJ1zxznaH-_MJy2OdP1dI6UD_DsNluAFSmbrWt3AMfHPql0l3-D1SnE4sRtgroieRZT7T9fxWznSiOQweY0zK9aNiPaggel-vavgE7hQ7bGV0edT9KwOUVLNAQSDxBH6gwc0RT9w69_rfNisV9Q0fdPL"
+				/>
+			</div>
+			<div id="drag-over-item" class="item"></div>
+			<div id="drag-over-item" class="item"></div>
+			<div id="drag-over-item" class="item"></div>
+		</div>
+		<script>
+			let draggbleItem = document.querySelector("#draggble-item");
+			let dragOverItem = document.querySelector("#drag-over-item");
+			document.querySelectorAll("#drag-over-item").forEach((el) => {
+				el.addEventListener("dragover", (e) => {
+					e.preventDefault();
+					el.classList.add("active");
+				});
+				el.addEventListener("dragleave", (e) => {
+					e.preventDefault();
+					el.classList.remove("active");
+				});
+				el.addEventListener("drop", (e) => {
+					el.appendChild(draggbleItem);
+					el.classList.remove("active");
+				});
+			});
+
+			//draggbleItem.addEventListener("ondragstart", drag);
+			//dragOverItem.addEventListener("ondrop", drop);
+		</script>
+	</body>
+</html>

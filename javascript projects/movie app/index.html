@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="style.css" />
+		<title>Movie App</title>
+	</head>
+	<body>
+		<header>
+			<input type="text" id="search" class="search" placeholder="Search" />
+		</header>
+
+		<main id="main"></main>
+
+		<script>
+			const items = [];
+			const main = document.getElementById("main");
+			const input = document.getElementById("search");
+			const API_URL =
+				"https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=3fd2be6f0c70a2a598f084ddfb75487c&page=1";
+			const IMG_PATH = "https://image.tmdb.org/t/p/w1280";
+			const SEARCH_API =
+				'https://api.themoviedb.org/3/search/movie?api_key=3fd2be6f0c70a2a598f084ddfb75487c&query="';
+			async function getMovies() {
+				const response = await fetch(API_URL);
+				const data = await response.json();
+				let movies = data.results;
+				movies.forEach((movie) => {
+					let tempDiv = document.createElement("div");
+					tempDiv.innerHTML = `<div>
+						<img src="${IMG_PATH + movie.poster_path}"/>
+						 <div class ="wrap">
+							<div class="movie-title">${movie.title}</div>
+						 <div class="rating">${movie["vote_average"]}</div>
+                       </div>
+						</div>`;
+					items.push(tempDiv);
+				});
+				items.forEach((item) => {
+					main.appendChild(item);
+				});
+			}
+
+			async function searchMovies() {
+				const response = await fetch(SEARCH_API + input.value);
+				const data = await response.json();
+				let movies = data.results;
+				movies.forEach((movie) => {
+					let tempDiv = document.createElement("div");
+					tempDiv.innerHTML = `<div>
+						<img src="${IMG_PATH + movie.poster_path}"/>
+						 <div class ="wrap">
+							<div class="movie-title">${movie.title}</div>
+						 <div class="rating">${movie["vote_average"]}</div>
+                       </div>
+						</div>`;
+					items.push(tempDiv);
+				});
+				items.forEach((item) => {
+					main.appendChild(item);
+				});
+			}
+			getMovies();
+			input.onkeydown = function (event) {
+				if (event.keyCode === 13) {
+					items.forEach((item) => {
+						item.style.display = "none";
+					});
+					searchMovies();
+				}
+			};
+		</script>
+	</body>
+</html>

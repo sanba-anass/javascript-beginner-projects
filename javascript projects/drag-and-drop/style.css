@@ -1,0 +1,35 @@
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+img {
+	width: 100%;
+	display: block;
+	object-fit: cover;
+    height: 100%;
+}
+body {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 100vh;
+}
+.container .item {
+	border-radius: 0.5rem;
+	border: 2px solid;
+	width: 200px;
+	height: 200px;
+    overflow: hidden;
+}
+
+.container {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	max-width: 600px;
+	gap: 1rem;
+}
+.active {
+   border: 2px dashed !important ;
+   
+}

@@ -1,0 +1,129 @@
+@import url("https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;500;600;700;800;900&display=swap");
+
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+	transition: 0.4s;
+}
+/* #182034 */
+/* button color #eae3dc */
+body {
+	font-family: "League Spartan", sans-serif;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-weight: 700;
+	min-height: 100vh;
+	font-size: 2rem;
+	background-color: #3a4764;
+	padding: 1rem;
+}
+.result-screen {
+	background-color: #182034;
+	width: 100%;
+	border-radius: 0.75rem;
+	height: 7rem;
+	margin-bottom: 1.5rem;
+	display: flex;
+	align-items: flex-end;
+	justify-content: flex-end;
+	color: white;
+	padding: 1rem;
+}
+
+.result-screen .result {
+	color: white;
+	font-size: 2.5rem;
+	padding: 1rem;
+}
+.ow {
+	overflow-wrap: break-word;
+	word-wrap: break-word;
+	hyphens: auto;
+}
+button {
+	font-family: inherit;
+	font-size: inherit;
+	font-weight: inherit;
+	border-radius: 0.3rem;
+	border: 0;
+	background-color: #eae3dc;
+	color: #182034;
+	border-bottom: 4px solid #b4a597;
+}
+
+.container {
+	width: 100%;
+	max-width: 500px;
+}
+.container .calc-buttons {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 1rem;
+	padding: 2rem;
+	border-radius: 0.75rem;
+	background-color: #182034;
+}
+@media (max-width: 25em) {
+	.container .calc-buttons {
+		padding-inline: 0.9rem;
+	}
+}
+.container .calc-buttons > * {
+	display: block;
+	padding: 1rem;
+	cursor: pointer;
+	user-select: none;
+}
+
+.container .calc-buttons > *:active {
+	transform: scale(0.9);
+}
+.active {
+	transform: scale(0.9);
+}
+.container .calc-buttons :last-child {
+	grid-column: span 2;
+	background-color: #d03f2f;
+	border-color: #93261a;
+	color: white;
+}
+.container .calc-buttons :nth-child(17) {
+	grid-column: span 2;
+}
+.container .calc-buttons .del-btn,
+.container .calc-buttons :nth-child(17) {
+	border-color: #47587c;
+	text-transform: uppercase;
+	background-color: #637097;
+	color: #eae3dc;
+}
+.logo {
+	color: white;
+}
+.toggle-btn {
+	all: unset;
+	cursor: pointer;
+	width: 5rem;
+	height: 2rem;
+	background-color: #182034;
+	border-radius: 10rem;
+}
+.toggle-btn .thumb {
+	width: 1.5rem;
+	height: 1.5rem;
+	border-radius: 50%;
+	background-color: #d03f2f;
+	margin-left: 0.25rem;
+	transition: 0.3s transform;
+}
+.animate-x {
+	transform: translateX(200%);
+}
+header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin: 2rem 0;
+}

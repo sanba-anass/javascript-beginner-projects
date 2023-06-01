@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>GitHub user search app</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
+			rel="stylesheet"
+		/>
+		<style>
+			* {
+				padding: 0;
+				margin: 0;
+				box-sizing: border-box;
+			}
+
+			body {
+				font-family: "Poppins", sans-serif;
+				min-height: 100vh;
+				display: flex;
+				align-items: center;
+
+				background: rgb(20, 28, 47);
+			}
+			img {
+				display: block;
+				max-width: 100%;
+			}
+			h2.logo {
+				font-size: 1.3rem;
+				font-weight: 500;
+				color: white;
+			}
+			header {
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				margin-bottom: 1.5rem;
+			}
+			input {
+				appearance: none;
+				border: none;
+				outline: none;
+				outline-color: rgb(75, 129, 255);
+				padding: 0.75rem 1.25rem;
+				width: 90%;
+				border-radius: 0.3rem;
+				background-color: rgb(31, 42, 72);
+				color: white;
+				font-family: inherit;
+			}
+			input::placeholder {
+				color: rgb(204, 210, 224);
+			}
+			.container {
+				margin: 0 auto;
+				width: 100%;
+				max-width: 500px;
+			}
+			.search-input {
+				display: flex;
+				gap: 1rem;
+			}
+			.search {
+				all: unset;
+				padding-inline: 1rem;
+				color: white;
+				border-radius: 0.4rem;
+				background-color: rgb(75, 129, 255);
+				cursor: pointer;
+			}
+			.search:hover {
+				background-color: rgb(47, 110, 255);
+			}
+			.user-img {
+				width: 5rem;
+				height: 5rem;
+				border-radius: 50%;
+				overflow: hidden;
+			}
+			.user-Component {
+				background-color: rgb(31, 42, 72);
+				display: flex;
+				padding: 2rem 1.5rem;
+				margin-top: 1rem;
+				border-radius: 0.4rem;
+				gap: 1.5rem;
+			}
+			.user-name {
+				font-size: 1.15rem;
+				font-weight: 500;
+				color: white;
+			}
+			.user-joined-date {
+				color: rgb(204, 210, 224);
+				font-size: 0.85rem;
+				font-weight: 300;
+			}
+			.user-info {
+				flex: 1;
+			}
+			.date-name-wrapper {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				margin-bottom: 0.3rem;
+			}
+			.user-nick-name {
+				font-size: 0.8rem;
+				color: rgb(75, 129, 255);
+				margin-bottom: 1rem;
+			}
+			.user-bio {
+				font-size: 0.85rem;
+				color: rgb(158, 162, 168);
+				margin-bottom: 2rem;
+			}
+			.account-info {
+				background-color: rgb(20, 28, 47);
+				border-radius: 0.4rem;
+				padding: 1rem;
+				display: flex;
+				gap: 1rem;
+			}
+			.account-info > * {
+				flex: 1;
+			}
+			.account-info .repos {
+				color: white;
+			}
+			.account-info .count {
+				font-weight: 600;
+				font-size: 1.1rem;
+				color: white;
+			}
+			.user-info .text {
+				font-size: 0.85rem;
+				margin-bottom: 0.4rem;
+				color: rgb(140, 145, 151);
+			}
+			.personal-info {
+				margin-top: 2rem;
+				display: grid;
+				grid-template-columns: repeat(2, 1fr);
+				gap: 2rem;
+			}
+			.personal-info > * {
+				display: flex;
+				color: rgb(235, 233, 233);
+				align-items: center;
+				font-size: 0.85em;
+				gap: 0.5rem;
+				font-weight: 300;
+			}
+			.personal-info > * .text {
+				margin: 0;
+			}
+			.personal-info .icon {
+				width: 1.1rem;
+				height: 1.1rem;
+				color: rgb(255, 255, 255);
+				fill: white;
+			}
+			.user-page {
+				color: white;
+				cursor: pointer;
+				display: inline-block;
+				margin-top: 1rem;
+				text-align: center;
+				width: 100%;
+			}
+			.user-page:hover {
+				color: rgb(75, 129, 255);
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<header>
+				<h2 class="logo">div Finder</h2>
+				<!-- <button>light</button> -->
+			</header>
+			<main>
+				<div class="search-input">
+					<input type="search" placeholder="Search Github username..." />
+					<button class="search">Search</button>
+				</div>
+				<div class="user-Component">
+					<div class="user-img">
+						<img src="" />
+					</div>
+					<div class="user-info">
+						<div class="date-name-wrapper">
+							<div class="user-name"></div>
+							<div class="user-joined-date"></div>
+						</div>
+						<div class="user-nick-name"></div>
+						<div class="user-bio"></div>
+						<div class="account-info">
+							<div class="repos">
+								<div class="text">Repos</div>
+								<div class="count"></div>
+							</div>
+							<div class="followers">
+								<div class="text">Followers</div>
+								<div class="count"></div>
+							</div>
+							<div class="following">
+								<div class="text">Following</div>
+								<div class="count"></div>
+							</div>
+						</div>
+						<div class="personal-info">
+							<div class="location">
+								<svg
+									class="icon"
+									xmlns="http://www.w3.org/2000/svg"
+									viewBox="0 0 24 24"
+									fill="currentColor"
+									class="w-6 h-6"
+								>
+									<path
+										fill-rule="evenodd"
+										d="M11.54 22.351l.07.04.028.016a.76.76 0 00.723 0l.028-.015.071-.041a16.975 16.975 0 001.144-.742 19.58 19.58 0 002.683-2.282c1.944-1.99 3.963-4.98 3.963-8.827a8.25 8.25 0 00-16.5 0c0 3.846 2.02 6.837 3.963 8.827a19.58 19.58 0 002.682 2.282 16.975 16.975 0 001.145.742zM12 13.5a3 3 0 100-6 3 3 0 000 6z"
+										clip-rule="evenodd"
+									/>
+								</svg>
+								<div class="text"></div>
+							</div>
+							<div class="twitter">
+								<svg
+									class="icon"
+									enable-background="new 0 0 56.693 56.693"
+									height="56.693px"
+									id="Layer_1"
+									version="1.1"
+									viewBox="0 0 56.693 56.693"
+									width="56.693px"
+									xml:space="preserve"
+									xmlns="http://www.w3.org/2000/svg"
+									xmlns:xlink="http://www.w3.org/1999/xlink"
+								>
+									<path
+										d="M52.837,15.065c-1.811,0.805-3.76,1.348-5.805,1.591c2.088-1.25,3.689-3.23,4.444-5.592c-1.953,1.159-4.115,2-6.418,2.454  c-1.843-1.964-4.47-3.192-7.377-3.192c-5.581,0-10.106,4.525-10.106,10.107c0,0.791,0.089,1.562,0.262,2.303  c-8.4-0.422-15.848-4.445-20.833-10.56c-0.87,1.492-1.368,3.228-1.368,5.082c0,3.506,1.784,6.6,4.496,8.412  c-1.656-0.053-3.215-0.508-4.578-1.265c-0.001,0.042-0.001,0.085-0.001,0.128c0,4.896,3.484,8.98,8.108,9.91  c-0.848,0.23-1.741,0.354-2.663,0.354c-0.652,0-1.285-0.063-1.902-0.182c1.287,4.015,5.019,6.938,9.441,7.019  c-3.459,2.711-7.816,4.327-12.552,4.327c-0.815,0-1.62-0.048-2.411-0.142c4.474,2.869,9.786,4.541,15.493,4.541  c18.591,0,28.756-15.4,28.756-28.756c0-0.438-0.009-0.875-0.028-1.309C49.769,18.873,51.483,17.092,52.837,15.065z"
+									/>
+								</svg>
+								<div class="text"></div>
+							</div>
+							<div class="link">
+								<svg
+									class="icon"
+									xmlns="http://www.w3.org/2000/svg"
+									viewBox="0 0 24 24"
+									fill="currentColor"
+									class="w-6 h-6"
+								>
+									<path
+										fill-rule="evenodd"
+										d="M19.902 4.098a3.75 3.75 0 00-5.304 0l-4.5 4.5a3.75 3.75 0 001.035 6.037.75.75 0 01-.646 1.353 5.25 5.25 0 01-1.449-8.45l4.5-4.5a5.25 5.25 0 117.424 7.424l-1.757 1.757a.75.75 0 11-1.06-1.06l1.757-1.757a3.75 3.75 0 000-5.304zm-7.389 4.267a.75.75 0 011-.353 5.25 5.25 0 011.449 8.45l-4.5 4.5a5.25 5.25 0 11-7.424-7.424l1.757-1.757a.75.75 0 111.06 1.06l-1.757 1.757a3.75 3.75 0 105.304 5.304l4.5-4.5a3.75 3.75 0 00-1.035-6.037.75.75 0 01-.354-1z"
+										clip-rule="evenodd"
+									/>
+								</svg>
+
+								<div class="text"></div>
+							</div>
+
+							<div class="company">
+								<svg
+									class="icon"
+									xmlns="http://www.w3.org/2000/svg"
+									fill="none"
+									viewBox="0 0 24 24"
+									stroke-width="1.5"
+									stroke="currentColor"
+									class="w-6 h-6"
+								>
+									<path
+										stroke-linecap="round"
+										stroke-linejoin="round"
+										d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3.75h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008z"
+									/>
+								</svg>
+
+								<div class="text"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</main>
+			<a class="user-page"> </a>
+		</div>
+	</body>
+	<script>
+		let API_URL = "https://api.github.com/users";
+		let searchBtn = document.querySelector(".search");
+		let userInput = document.querySelector("input");
+		let userComponent = document.querySelector(".user-Component");
+
+		async function fetchUsers(url) {
+			const response = await fetch(url);
+			const data = await response.json();
+
+			let userImg = document.querySelector(".user-img");
+			userImg.firstElementChild.src = `${data["avatar_url"]}`;
+			let userName = document.querySelector(".user-name");
+			userName.innerText = `${data.name}`;
+			let userJoindedDate = document.querySelector(".user-joined-date");
+			userJoindedDate.innerText = `joined ${data["created_at"].slice(0, 10)}`;
+			let userNickName = document.querySelector(".user-nick-name");
+			userNickName.innerText = `@${data["login"]}`;
+			let userBio = document.querySelector(".user-bio");
+			userBio.innerText = `${data.bio ?? "This profile has no bio"}`;
+			let reposCount = document.querySelector(".account-info .repos .count");
+			reposCount.innerText = `${
+				data["public_repos"] ?? "This profile has no public repos"
+			}`;
+
+			let followersCount = document.querySelector(
+				".account-info .followers .count"
+			);
+			followersCount.innerText = `${data.followers}`;
+
+			let followingCount = document.querySelector(
+				".account-info .following .count"
+			);
+
+			followingCount.innerText = `${data.following}`;
+
+			// personal
+			let location = document.querySelector(".personal-info .location .text");
+			location.innerText = `${data.location ?? "no location provided"}`;
+
+			let twitter = document.querySelector(".personal-info .twitter .text");
+
+			twitter.innerText = `${data["twitter-username"] ?? "Not Avaliale"}`;
+			if (!data["twitter-username"]) {
+				twitter.style.color = "#999";
+				twitter.previousElementSibling.style.fill = "#999";
+			}
+
+			let link = document.querySelector(".personal-info .link .text");
+			link.innerText = `${data.blog ?? "no data avaliable"}`;
+
+			let company = document.querySelector(".personal-info .company .text");
+			company.innerText = `${
+				data.company?.split(",")[0] ?? "no data avaliable"
+			}`;
+			let userPage = document.querySelector(".user-page");
+			userPage.innerText = `${data["html_url"]}`;
+			userPage.href = data["html_url"];
+		}
+		let userData;
+		searchBtn.onclick = async function (event) {
+			if (userInput.value === "") {
+				return;
+			}
+			let API_URL2 = "https://api.github.com/users";
+
+			const response = await fetch(API_URL2);
+			const data = await response.json();
+
+			data.forEach(async (dt) => {
+				console.log(userInput.value);
+				let dataUrl = dt.url;
+				const response = await fetch(dataUrl);
+				const data = await response.json();
+				if (data.name === userInput.value.trim()) {
+					userData = data;
+					let name = data.name.split(" ");
+					API_URL2 = API_URL2 + "/" + userData.login;
+					fetchUsers(API_URL2);
+					console.log(API_URL2);
+					userInput.value = "";
+				}
+			});
+		};
+	</script>
+</html>

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title></title>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+			body {
+				font-family: "poppins";
+				min-height: 100vh;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				background-color: #dbe1ff;
+			}
+			.user-fliter-comp {
+				border-radius: 0.5rem;
+				background-color: white;
+				box-shadow: 1px 2px 6px hsla(230, 59%, 8%, 0.123);
+				max-width: 320px;
+				overflow: hidden;
+			}
+			.users {
+				height: 370px;
+				overflow: auto;
+				margin-top: 1.25rem;
+			}
+			h3.title {
+				font-size: 1.25rem;
+				font-weight: bold;
+				margin-bottom: 0.5rem;
+			}
+			p.sub-title {
+				font-size: 0.9rem;
+				color: #b5c1ff;
+				margin-bottom: 1rem;
+			}
+			input[id="search-input"] {
+				border: none;
+				background-color: #26368a;
+				outline: none;
+				caret-color: #8892c5;
+				color: white;
+				padding: 0.55rem 1rem;
+				width: 100%;
+				border-radius: 10rem;
+				font-family: inherit;
+			}
+			.search-content {
+				background-color: #3e57db;
+				color: white;
+				padding: 2rem;
+				padding-bottom: 1.5rem;
+			}
+			::placeholder {
+				color: #aebaf7;
+			}
+			.user-img {
+				border-radius: 50%;
+				width: 2.5rem;
+				height: 2.5rem;
+			}
+
+			.user-comp h4 {
+				font-size: 0.9rem;
+				color: #0c1129;
+				margin-bottom: 0.2rem;
+			}
+			.user-comp p {
+				font-size: 0.8rem;
+				color: #0c1129;
+				margin-bottom: 0.2rem;
+			}
+			.user-comp {
+				width: 100%;
+				margin-bottom: 2rem;
+				display: flex;
+				align-items: center;
+				gap: 1rem;
+				padding-inline: 1.25rem;
+			}
+			.hide {
+				display: none;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<main class="user-fliter-comp">
+				<div class="search-content">
+					<h3 class="title">Live User Filter</h3>
+					<p class="sub-title">Search by name and/or location</p>
+					<input id="search-input" type="text" placeholder="Search" />
+				</div>
+				<div class="users"></div>
+			</main>
+		</div>
+		<script defer type="module">
+			const items = [];
+
+			let users = [
+				{
+					name: "Lis Terlouw",
+					location: "Nutter, Netherlands",
+					imageUrl: "https://randomuser.me/api/portraits/women/23.jpg",
+				},
+				{
+					name: "Sophia Barrett",
+					location: "Winchester, United Kingdom",
+					imageUrl: "https://randomuser.me/api/portraits/women/28.jpg",
+				},
+				{
+					name: "Maya Gauthier",
+					location: "Brockton, Canada",
+					imageUrl: "https://randomuser.me/api/portraits/women/54.jpg",
+				},
+				{
+					name: "Luke Palmer",
+					location: "Townsville, Australia",
+					imageUrl: "https://randomuser.me/api/portraits/men/7.jpg",
+				},
+				{
+					name: "Anthony Bell",
+					location: "TPort St. Lucie, United States",
+					imageUrl: "https://randomuser.me/api/portraits/men/1.jpg",
+				},
+				{
+					name: "Sam White",
+					location: "Manchester, United Kingdom",
+					imageUrl: "https://randomuser.me/api/portraits/women/43.jpg",
+				},
+				{
+					name: "Julio Dumont",
+					location: "Bettens, Switzerland",
+					imageUrl: "https://randomuser.me/api/portraits/men/77.jpg",
+				},
+				{
+					name: "Víctor Rojas",
+					location: "Murcia, Spain",
+					imageUrl: "https://randomuser.me/api/portraits/men/42.jpg",
+				},
+				{
+					name: "Abigail Adams",
+					location: "Chichester, United Kingdom",
+					imageUrl: "https://randomuser.me/api/portraits/women/38.jpg",
+				},
+			];
+			let searchInput = document.getElementById("search-input");
+			let usersUi = document.querySelector(".users");
+			let btn = document.querySelector(".users");
+			function renderUser() {
+				users.forEach((user) => {
+					let { name, location, imageUrl } = user;
+					let h4 = document.createElement("h4");
+					h4.className = "user-name";
+					h4.innerText = name;
+					let p = document.createElement("p");
+					p.className = "user-location";
+					p.innerText = location;
+					let img = document.createElement("img");
+					img.className = "user-img";
+					img.src = imageUrl;
+					let userComp = document.createElement("div");
+					userComp.className = "user-comp";
+					let userInfo = document.createElement("div");
+					userInfo.className = "user-info";
+					userInfo.append(h4, p);
+					userComp.appendChild(img);
+					userComp.appendChild(userInfo);
+					items.push(userComp);
+				});
+			}
+			renderUser();
+			items.forEach((item) => {
+				usersUi.appendChild(item);
+			});
+			searchInput.oninput = (event) => {
+				items.forEach((item) => {
+					let userName =
+						item.children[1].children[0].innerText.toString().toLowerCase() +
+						item.children[1].children[1].innerText.toLowerCase();
+					if (userName.includes(event.target.value.toLowerCase())) {
+						item.classList.remove("hide");
+					} else {
+						item.classList.add("hide");
+					}
+				});
+			};
+		</script>
+	</body>
+</html>

@@ -1,0 +1,117 @@
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+ul {
+	list-style: none;
+}
+body {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 100vh;
+	font-family: "poppins";
+	background-color: rgb(129, 88, 240);
+}
+.container {
+	width: 45%;
+	position: relative;
+}
+.slider-tabs {
+	width: 100%;
+	border-radius: 0.6rem;
+	background-color: rgb(255, 255, 255);
+	display: flex;
+	align-items: center;
+	padding: 1.5rem;
+	gap: 1rem;
+	box-shadow: 0 0 25px rgba(0, 0, 0, 0.25);
+	overflow: hidden;
+	scroll-behavior: smooth;
+}
+.tab {
+	background-color: rgb(245, 245, 245);
+	padding: 0.5rem 1rem;
+	border-radius: 2rem;
+	cursor: pointer;
+	border: 1.3px solid rgb(224, 224, 224);
+	transition: 0.3s background-color;
+	width: min-content;
+	user-select: none;
+}
+.tab:not(.active):hover {
+	background-color: rgb(238, 238, 238);
+}
+.active {
+	background-color: rgb(129, 88, 240);
+	color: white;
+}
+.active:hover {
+	background-color: rgb(144, 104, 255);
+}
+
+.container #scroll-right-btn {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: absolute;
+	z-index: 99;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	width: 12%;
+	background: linear-gradient(-90deg, #fff 70%, transparent);
+	border: none;
+	border-radius: 0 0.6rem 0.6rem 0;
+	cursor: pointer;
+	display: none;
+}
+.container #scroll-left-btn {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: absolute;
+	z-index: 99;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	width: 12%;
+	background: linear-gradient(90deg, #fff 70%, transparent);
+	border: none;
+	border-radius: 0.6rem 0 0 0.6rem;
+	cursor: pointer;
+	display: none;
+}
+.container button .icon {
+	width: 2rem;
+	height: 2rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 50%;
+	background-color: transparent;
+}
+.container button .icon {
+	width: 2rem;
+	height: 2rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 50%;
+	background-color: transparent;
+}
+.container button .icon:hover {
+	background-color: rgb(233, 233, 233) !important;
+}
+.container button svg {
+	width: 1.25rem;
+	height: 1.5rem;
+}
+.container #scroll-left-btn svg {
+	transform: rotate(180deg);
+}
+.dragging{
+	cursor: grab;
+	scroll-behavior: auto;
+}

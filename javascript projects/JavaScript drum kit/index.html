@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<style>
+			* {
+				padding: 0;
+				margin: 0;
+				box-sizing: border-box;
+			}
+			body {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				min-height: 100vh;
+				font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+					Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+					sans-serif;
+			}
+			.drums {
+				background-image: url(https://m.media-amazon.com/images/I/8186g7plXaL._SX679_.jpg);
+				width: 679px;
+				height: 453px;
+				background-repeat: no-repeat;
+				position: relative;
+			}
+			button {
+				display: block;
+				position: absolute;
+				box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+					rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+					rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+				z-index: 99999;
+				border: none;
+				padding: 1.25rem 1.5rem;
+				border-radius: 0.3rem;
+				font-weight: 600;
+				user-select: none;
+			}
+			.E {
+				top: -2.5rem;
+				left: 3rem;
+			}
+			.R {
+				top: -1.5rem;
+				left: 13rem;
+			}
+			.H {
+				left: 25rem;
+			}
+			.G {
+				left: 18rem;
+			}
+			.J {
+				top: 9rem;
+				left: 29.5rem;
+			}
+			.F {
+				top: 11.5rem;
+				left: 12.5rem;
+			}
+			.V {
+				top: 17rem;
+				left: 20.5rem;
+			}
+			.K {
+				top: 2.5rem;
+				left: 37rem;
+			}
+			.I {
+				top: 2.5rem;
+				left: 31rem;
+			}
+			button:active {
+				transform: scale(0.9);
+			}
+			.active {
+				transform: scale(0.9);
+			}
+		</style>
+	</head>
+	<body>
+		<div class="drums">
+			<button class="E">E</button>
+			<button class="R">R</button>
+			<button class="H">H</button>
+			<button class="G">G</button>
+			<button class="F">F</button>
+			<button class="J">J</button>
+			<button class="V">V</button>
+			<button class="K">K</button>
+			<button class="I">I</button>
+		</div>
+
+		<script>
+			function playSound(audioFile) {
+				let audio = new Audio(audioFile);
+				audio.play();
+			}
+
+			function toggleActive(className) {
+				let btn = document.querySelector(className);
+				btn.classList.add("active");
+				setTimeout(() => {
+					btn.classList.remove("active");
+				}, 0);
+			}
+			window.addEventListener("keydown", (event) => {
+				console.log(event.target);
+				switch (event.keyCode) {
+					case 69:
+						document.querySelector(".E").click();
+						toggleActive(".E");
+						break;
+					case 82:
+						document.querySelector(".R").click();
+						toggleActive(".R");
+
+						break;
+					case 72:
+						document.querySelector(".H").click();
+						toggleActive(".H");
+
+						break;
+					case 71:
+						document.querySelector(".G").click();
+						toggleActive(".G");
+
+						break;
+					case 70:
+						document.querySelector(".F").click();
+						toggleActive(".F");
+
+						break;
+					case 74:
+						document.querySelector(".J").click();
+						toggleActive(".J");
+
+						break;
+
+					case 86:
+						document.querySelector(".V").click();
+						toggleActive(".V");
+
+						break;
+
+					case 75:
+						document.querySelector(".K").click();
+						toggleActive(".K");
+
+						break;
+					case 73:
+						document.querySelector(".I").click();
+						toggleActive(".I");
+
+						break;
+				}
+			});
+
+			document.querySelector(".E").addEventListener("click", () => {
+				playSound(
+					"https://raw.githubusercontent.com/ArunMichaelDsouza/javascript-30-course/master/src/01-javascript-drum-kit/sounds/crash.wav"
+				);
+			});
+			document.querySelector(".R").addEventListener("click", () => {
+				playSound(
+					"https://raw.githubusercontent.com/ArunMichaelDsouza/javascript-30-course/master/src/01-javascript-drum-kit/sounds/ride.wav"
+				);
+			});
+			document.querySelector(".H").addEventListener("click", () => {
+				playSound(
+					"https://raw.githubusercontent.com/ArunMichaelDsouza/javascript-30-course/master/src/01-javascript-drum-kit/sounds/tom-high.wav"
+				);
+			});
+			document.querySelector(".G").addEventListener("click", () => {
+				playSound(
+					"https://raw.githubusercontent.com/ArunMichaelDsouza/javascript-30-course/master/src/01-javascript-drum-kit/sounds/tom-mid.wav"
+				);
+			});
+
+			document.querySelector(".F").addEventListener("click", () => {
+				playSound(
+					"https://raw.githubusercontent.com/ArunMichaelDsouza/javascript-30-course/master/src/01-javascript-drum-kit/sounds/tom-low.wav"
+				);
+			});
+			document.querySelector(".J").addEventListener("click", () => {
+				playSound(
+					"https://raw.githubusercontent.com/ArunMichaelDsouza/javascript-30-course/master/src/01-javascript-drum-kit/sounds/snare.wav"
+				);
+			});
+			document.querySelector(".V").addEventListener("click", () => {
+				playSound(
+					"https://raw.githubusercontent.com/ArunMichaelDsouza/javascript-30-course/master/src/01-javascript-drum-kit/sounds/kick.wav"
+				);
+			});
+			document.querySelector(".K").addEventListener("click", () => {
+				playSound(
+					"https://raw.githubusercontent.com/ArunMichaelDsouza/javascript-30-course/master/src/01-javascript-drum-kit/sounds/hihat-close.wav"
+				);
+			});
+			document.querySelector(".I").addEventListener("click", () => {
+				playSound(
+					"https://raw.githubusercontent.com/ArunMichaelDsouza/javascript-30-course/master/src/01-javascript-drum-kit/sounds/hihat-open.wav"
+				);
+			});
+		</script>
+	</body>
+</html>

@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>client side form validation</title>
+		<style>
+			* {
+				padding: 0;
+				margin: 0;
+				box-sizing: border-box;
+			}
+			body {
+				min-height: 100vh;
+				background-color: rgb(27, 27, 27);
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+					Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+					sans-serif;
+			}
+			form input {
+				padding: 0.5rem;
+				border: 1px solid #eee;
+				margin-bottom: 1.25rem;
+				display: block;
+				width: 100%;
+				border-radius: 0.3rem;
+			}
+			form label {
+				color: rgb(0, 0, 0);
+				margin-bottom: 0.5rem;
+				display: block;
+				font-weight: 500;
+			}
+			input:focus {
+				outline: 1px solid rgb(54, 112, 236);
+			}
+			form {
+				background-color: rgb(197, 197, 197);
+				display: block;
+				box-shadow: 1px 2px 6px rgba(0, 0, 0, 0.089);
+				padding: 1.5rem;
+				flex-grow: 0.1;
+				border-radius: 0.3rem;
+				position: relative;
+			}
+			form button[type="submit"] {
+				width: 100%;
+				padding: 0.5rem 0;
+			}
+			form input[id="confirm-password"] {
+				margin-bottom: 2.5rem;
+			}
+			.error-text {
+				color: rgb(238, 16, 0);
+				margin-bottom: 0.5rem;
+				font-size: 0.9rem;
+			}
+			.hide {
+				display: none;
+			}
+			.show {
+				display: block;
+			}
+			h1 {
+				color: white;
+				display: none;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>Welcome to my website beautiful human 😄</h1>
+		<form id="form">
+			<label for="user-name">userName</label>
+			<input type="text" id="user-name" value="" />
+			<div class="error-text err-name hide"></div>
+			<!-- username input -->
+			<label for="email">Email</label>
+			<input type="text" id="email" />
+			<div class="error-text err-email hide"></div>
+
+			<!-- email input -->
+			<label for="password">Password</label>
+			<input type="password" id="password" />
+			<div class="error-text err-password hide"></div>
+
+			<!-- password input -->
+			<label for="confirm-password">Confirm password</label>
+			<input type="password" id="confirm-password" />
+			<div class="error-text err-confirm-password hide"></div>
+
+			<!-- confirmPassword input -->
+			<button type="submit">submit</button>
+		</form>
+
+		<script>
+			let form = document.getElementById("form");
+			let isloggedIn = false;
+			let h1 = document.querySelector("h1");
+			let userName = document.querySelector("input[id='user-name']");
+			let errNameMessage = document.querySelector(".err-name");
+			let errEmailMessage = document.querySelector(".err-email");
+			let errPasswordMessage = document.querySelector(".err-password");
+			let email = document.querySelector("input[id='email']");
+			let password = document.querySelector("input[id='password']");
+			let confirmPassword = document.querySelector(
+				"input[id='confirm-password']"
+			);
+			let errConfirmPasswordMessage = document.querySelector(
+				".err-confirm-password"
+			);
+			function validateUserName(inputValue, errComp) {
+				switch (true) {
+					case inputValue.length === 0:
+						errComp.innerText = "userName can't be blank!";
+						errComp.classList.remove("hide");
+						userName.style = "outline: 1.5px solid rgb(236, 44, 44);";
+						isloggedIn = false;
+						break;
+					case inputValue.length < 10 && inputValue.length > 0:
+						errComp.innerText = "can't not be less than 10 characters";
+						errComp.classList.remove("hide");
+						userName.style = "outline: 1.5px solid rgb(236, 44, 44);";
+						isloggedIn = false;
+						break;
+					case inputValue.length > 12:
+						errComp.innerText = "can't not be more than 12 characters";
+						userName.style = "margin:0";
+						errComp.classList.remove("hide");
+						userName.style = "outline: 1.5px solid rgb(236, 44, 44);";
+						isloggedIn = false;
+						break;
+					default:
+						console.log("everything is fine");
+						errComp.classList.add("hide");
+						userName.style = "outline: 1.5px solid rgb(44, 236, 44);";
+						isloggedIn = true;
+				}
+				return isloggedIn;
+			}
+			const validEmail = (email) => {
+				return String(email)
+					.toLowerCase()
+					.match(
+						/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+					);
+			};
+			function validateEmail(inputValue, errComp) {
+				switch (true) {
+					case inputValue.length === 0:
+						errComp.innerText = "Email can't be blank!";
+						errComp.classList.remove("hide");
+						email.style = "outline: 1.5px solid rgb(236, 44, 44);";
+						isloggedIn = false;
+						break;
+					case !validEmail(inputValue):
+						errComp.innerText = "this is not a valid Email";
+						errComp.classList.remove("hide");
+						email.style = "outline: 1.5px solid rgb(236, 44, 44);";
+						isloggedIn = false;
+						break;
+					default:
+						console.log("everything is fine");
+						errComp.classList.add("hide");
+						email.style = "outline: 1.5px solid rgb(44, 236, 44);";
+						isloggedIn = true;
+				}
+				return isloggedIn;
+			}
+			function validatePassword(inputValue, errComp) {
+				switch (true) {
+					case inputValue.length === 0:
+						errComp.innerText = "password can't be blank!";
+						errComp.classList.remove("hide");
+						password.style = "outline: 1.5px solid rgb(236, 44, 44);";
+						isloggedIn = false;
+						break;
+					case inputValue.length < 6 && inputValue.length > 0:
+						errComp.innerText = "password should be more than 6 characters";
+						errComp.classList.remove("hide");
+						password.style = "outline: 1.5px solid rgb(236, 44, 44);";
+						isloggedIn = false;
+						break;
+					default:
+						console.log("everything is fine");
+						errComp.classList.add("hide");
+						password.style = "outline: 1.5px solid rgb(44, 236, 44);";
+						isloggedIn = true;
+				}
+				return isloggedIn;
+			}
+			function validateConfirmPassword(inputValue, passwordValue, errComp) {
+				switch (true) {
+					case inputValue.length === 0:
+						errComp.innerText = "can't be blank!";
+						errComp.classList.remove("hide");
+						confirmPassword.style = "outline: 1.5px solid rgb(236, 44, 44);";
+						isloggedIn = false;
+						break;
+					case inputValue !== passwordValue:
+						errComp.innerText = "should match your password!";
+						errComp.classList.remove("hide");
+						confirmPassword.style = "outline: 1.5px solid rgb(236, 44, 44);";
+						isloggedIn = false;
+						break;
+					default:
+						console.log("everything is fine");
+						errComp.classList.add("hide");
+						confirmPassword.style = "outline: 1.5px solid rgb(44, 236, 44);";
+						isloggedIn = true;
+				}
+				return isloggedIn;
+			}
+			form.addEventListener("submit", (event) => {
+				let v1 = validateUserName(userName.value.trim(), errNameMessage);
+				let v2 = validateEmail(email.value.trim(), errEmailMessage);
+				let v3 = validatePassword(password.value.trim(), errPasswordMessage);
+				let v4 = validateConfirmPassword(
+					confirmPassword.value.trim(),
+					password.value.trim(),
+					errConfirmPasswordMessage
+				);
+				console.log(v1 && v2 && v3 && v4);
+				if (v1 && v2 && v3 && v4) {
+					form.innerHTML = "loading...";
+					setTimeout(() => {
+						h1.classList.add("show");
+						form.classList.add("hide");
+					}, 1000);
+				}
+				event.preventDefault();
+			});
+		</script>
+	</body>
+</html>
